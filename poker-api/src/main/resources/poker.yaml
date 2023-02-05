@@ -1,0 +1,28 @@
+openapi: "3.0.0"
+info:
+  version: 0.0.1
+  title: Scrum Poker
+paths:
+  /tables:
+    get:
+      summary: List all tables
+      operationId: allTables
+      responses:
+        '200':
+          description: All available tables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TableDto'
+
+components:
+  schemas:
+    TableDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
