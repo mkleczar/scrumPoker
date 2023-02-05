@@ -64,9 +64,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>
-								${project.basedir}/src/main/resources/poker.yaml
-							</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/poker.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<library>spring-boot</library>
 							<apiPackage>com.example.pokerapi.openapi.api</apiPackage>
@@ -75,6 +73,7 @@
 							<configOptions>
 								<delegatePattern>true</delegatePattern>
 								<useJakartaEe>true</useJakartaEe>
+								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
 					</execution>

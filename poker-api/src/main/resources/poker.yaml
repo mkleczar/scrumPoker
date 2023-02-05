@@ -7,6 +7,8 @@ paths:
     get:
       summary: List all tables
       operationId: allTables
+      tags:
+        - table
       responses:
         '200':
           description: All available tables
