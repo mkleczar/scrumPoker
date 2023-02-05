@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
+        <module>poker-api</module>
+        <module>poker-backend</module>
     </modules>
 
 </project>
