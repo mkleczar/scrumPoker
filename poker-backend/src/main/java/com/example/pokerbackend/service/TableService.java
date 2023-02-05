@@ -1,6 +1,8 @@
 package com.example.pokerbackend.service;
 
+import com.example.pokerapi.openapi.model.AddTableRequest;
 import com.example.pokerapi.openapi.model.TableDto;
+import com.example.pokerbackend.entity.PokerTable;
 import com.example.pokerbackend.mapper.PokerTableMapper;
 import com.example.pokerbackend.repository.PokerTableRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,5 +20,11 @@ public class TableService {
     public List<TableDto> allTables() {
         return pokerTableMapper.map(
                 pokerTableRepository.findAll());
+    }
+
+    public TableDto addTable(AddTableRequest request) {
+        return pokerTableMapper.map(
+                pokerTableRepository.save(
+                        PokerTable.builder().name(request.getName()).build()));
     }
 }

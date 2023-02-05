@@ -18,9 +18,43 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TableDto'
+    post:
+      summary: Add new table
+      operationId: addTable
+      tags:
+        - table
+      requestBody:
+        description: Parameters required to create new table
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTableRequest'
+      responses:
+        '200':
+          description: Table added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableDto'
+        '403':
+          description: Table cant be created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
 components:
   schemas:
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+
     TableDto:
       type: object
       properties:
@@ -29,3 +63,10 @@ components:
           format: int64
         name:
           type: string
+
+    AddTableRequest:
+      type: object
+      properties:
+        name:
+          type: string
+
