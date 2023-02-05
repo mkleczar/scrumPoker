@@ -3,7 +3,7 @@ info:
   version: 0.0.1
   title: Scrum Poker
 paths:
-  /tables:
+  /table:
     get:
       summary: List all tables
       operationId: allTables

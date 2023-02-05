@@ -3,6 +3,7 @@ package com.example.pokerbackend.service;
 import com.example.pokerapi.openapi.model.AddTableRequest;
 import com.example.pokerapi.openapi.model.TableDto;
 import com.example.pokerbackend.entity.PokerTable;
+import com.example.pokerbackend.exception.TableNameDuplicatedException;
 import com.example.pokerbackend.mapper.PokerTableMapper;
 import com.example.pokerbackend.repository.PokerTableRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,9 @@ public class TableService {
     }
 
     public TableDto addTable(AddTableRequest request) {
+        if (pokerTableRepository.findPokerTableByName(request.getName()).size() > 0) {
+            throw new TableNameDuplicatedException();
+        }
         return pokerTableMapper.map(
                 pokerTableRepository.save(
                         PokerTable.builder().name(request.getName()).build()));
