@@ -3,6 +3,38 @@ info:
   version: 0.0.1
   title: Scrum Poker
 paths:
+  /table/{tableId}/user:
+    post:
+      summary: Add new user to table
+      operationId: addUser
+      tags:
+        - table
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: New user registration data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUserRequest'
+      responses:
+        '200':
+          description: New user added to table properly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '403':
+          description: User cant be registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /table:
     get:
       summary: List all tables
@@ -53,6 +85,25 @@ components:
         code:
           type: integer
         message:
+          type: string
+
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nick:
+          type: string
+        role:
+          type: string
+
+    AddUserRequest:
+      type: object
+      properties:
+        nick:
+          type: string
+        role:
           type: string
 
     TableDto:

@@ -2,7 +2,9 @@ package com.example.pokerbackend.controller;
 
 import com.example.pokerapi.openapi.api.TableApi;
 import com.example.pokerapi.openapi.model.AddTableRequest;
+import com.example.pokerapi.openapi.model.AddUserRequest;
 import com.example.pokerapi.openapi.model.TableDto;
+import com.example.pokerapi.openapi.model.UserDto;
 import com.example.pokerbackend.service.TableService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +26,10 @@ public class TableController implements TableApi {
     @Override
     public ResponseEntity<TableDto> addTable(AddTableRequest addTableRequest) {
         return ResponseEntity.ok(tableService.addTable(addTableRequest));
+    }
+
+    @Override
+    public ResponseEntity<UserDto> addUser(Long tableId, AddUserRequest addUserRequest) {
+        return ResponseEntity.ok(tableService.addUserToTable(tableId, addUserRequest));
     }
 }
