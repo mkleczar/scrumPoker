@@ -1,5 +1,9 @@
 package com.example.pokerbackend.exception;
 
-public class TableNameDuplicatedException extends RuntimeException{
+public class TableNameDuplicatedException extends BasicException {
 
+
+    public TableNameDuplicatedException() {
+        super("Table name is duplicated", 1);
+    }
 }

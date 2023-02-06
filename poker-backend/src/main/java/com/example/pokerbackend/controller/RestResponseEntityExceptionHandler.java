@@ -1,6 +1,7 @@
 package com.example.pokerbackend.controller;
 
 import com.example.pokerapi.openapi.model.Error;
+import com.example.pokerbackend.exception.BasicException;
 import com.example.pokerbackend.exception.TableNameDuplicatedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({TableNameDuplicatedException.class})
-    protected ResponseEntity<Object> tableNameDuplication(RuntimeException ex, WebRequest request) {
-        Error body = new Error().code(1).message("Table name duplicated");
-        return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.FORBIDDEN, request);
+    @ExceptionHandler({BasicException.class})
+    protected ResponseEntity<Object> tableNameDuplication(BasicException ex, WebRequest request) {
+        Error body = new Error().code(ex.getCode()).message(ex.getInfo());
+        return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 }

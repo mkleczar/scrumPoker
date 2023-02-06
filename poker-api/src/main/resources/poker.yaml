@@ -29,7 +29,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDto'
-        '403':
+        '500':
           description: User cant be registered
           content:
             application/json:
@@ -68,7 +68,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TableDto'
-        '403':
+        '500':
           description: Table cant be created
           content:
             application/json:
