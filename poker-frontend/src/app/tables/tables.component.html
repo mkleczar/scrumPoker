@@ -1,0 +1,11 @@
+<h1>List of all tables</h1>
+
+<ul class="tables">
+  <li *ngFor="let t of tables">
+    <button type="button" (click)="joinTable(t)">
+      <span class="badge">{{t.id}}</span>
+      <span class="name">{{t.name}}</span>
+    </button>
+  </li>
+</ul>
+
