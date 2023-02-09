@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TABLES} from "../model/mock-tables";
-import {Table} from "../model/table";
+import { Table } from "../model/table";
+import { PokerService } from "../poker.service";
 
 @Component({
   selector: 'app-tables',
@@ -9,8 +9,17 @@ import {Table} from "../model/table";
 })
 export class TablesComponent {
 
-  tables = TABLES;
+  tables: Table[] = [];
 
-  joinTable(t:Table) {
+  ngOnInit(): void {
+    this.getTables();
+  }
+
+  constructor(private pokerService: PokerService) {
+  }
+
+  getTables(): void {
+    this.pokerService.getTables()
+      .subscribe(t => this.tables = t);
   }
 }

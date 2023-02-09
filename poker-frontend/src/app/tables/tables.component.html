@@ -1,11 +1,11 @@
-<h1>List of all tables</h1>
+<h3>List of all tables</h3>
 
 <ul class="tables">
   <li *ngFor="let t of tables">
-    <button type="button" (click)="joinTable(t)">
+    <a routerLink="/table/{{t.id}}">
       <span class="badge">{{t.id}}</span>
-      <span class="name">{{t.name}}</span>
-    </button>
+      {{t.name}}
+    </a>
   </li>
 </ul>
 
