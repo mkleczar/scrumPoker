@@ -5,16 +5,22 @@ import { AppComponent } from './app.component';
 import { TablesComponent } from './tables/tables.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TableComponent } from './table/table.component';
+import { HttpClientModule } from "@angular/common/http";
+import { TableAddComponent } from './table-add/table-add.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     TablesComponent,
-    TableComponent
+    TableComponent,
+    TableAddComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
