@@ -2,7 +2,7 @@ package com.example.pokerbackend.controller;
 
 import com.example.pokerapi.openapi.api.TableApi;
 import com.example.pokerapi.openapi.model.AddTableRequest;
-import com.example.pokerapi.openapi.model.AddUserRequest;
+import com.example.pokerapi.openapi.model.TableDetailsDto;
 import com.example.pokerapi.openapi.model.TableDto;
 import com.example.pokerapi.openapi.model.UserDto;
 import com.example.pokerbackend.service.TableService;
@@ -35,7 +35,15 @@ public class TableController implements TableApi {
     }
 
     @Override
-    public ResponseEntity<UserDto> addUser(Long tableId, AddUserRequest addUserRequest) {
-        return ResponseEntity.ok(tableService.addUserToTable(tableId, addUserRequest));
+    public ResponseEntity<TableDetailsDto> details(Long tableId, Long userId) {
+        log.info("details()");
+        return ResponseEntity.ok(tableService.tableDetails(tableId, userId));
     }
+
+    @Override
+    public ResponseEntity<UserDto> join(Long tableId, UserDto user) {
+        log.info("join()");
+        return ResponseEntity.ok(tableService.addUserToTable(tableId, user));
+    }
+
 }

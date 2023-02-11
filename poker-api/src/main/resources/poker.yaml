@@ -3,10 +3,10 @@ info:
   version: 0.0.1
   title: Scrum Poker
 paths:
-  /table/{tableId}/user:
+  /table/{tableId}/join:
     post:
       summary: Add new user to table
-      operationId: addUser
+      operationId: join
       tags:
         - table
       parameters:
@@ -21,7 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddUserRequest'
+              $ref: '#/components/schemas/UserDto'
       responses:
         '200':
           description: New user added to table properly
@@ -35,6 +35,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
+  /table/{tableId}/user/{userId}/details:
+    get:
+      summary: Details for table
+      operationId: details
+      tags:
+        - table
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: User is now working in context of specific table
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableDetailsDto'
+        '500':
+          description: Can not join to table
+
   /table:
     get:
       summary: List all tables
@@ -98,14 +128,6 @@ components:
         role:
           type: string
 
-    AddUserRequest:
-      type: object
-      properties:
-        nick:
-          type: string
-        role:
-          type: string
-
     TableDto:
       type: object
       properties:
@@ -114,6 +136,19 @@ components:
           format: int64
         name:
           type: string
+
+    TableDetailsDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
 
     AddTableRequest:
       type: object

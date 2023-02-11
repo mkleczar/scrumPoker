@@ -1,3 +1,11 @@
 <div *ngIf="table">
   <h2>Table {{table.name}}</h2>
+
+
+  <h3>Players</h3>
+  <ul>
+    <li *ngFor="let u of table.users">
+      {{u.role}} - {{u.nick}}
+    </li>
+  </ul>
 </div>

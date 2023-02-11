@@ -1,0 +1,8 @@
+<h3>Joining to table</h3>
+<div>
+  <label for="user-nickname">User nickname:</label>
+  <input id="user-nickname" #userName placeholder="nickname">
+  <label for="user-role">User role:</label>
+  <input id="user-role" #userRole placeholder="role">
+  <button type="button" class="add-button" (click)="joinTable(userName.value, userRole.value);">Join table</button>
+</div>

@@ -8,13 +8,15 @@ import { TableComponent } from './table/table.component';
 import { HttpClientModule } from "@angular/common/http";
 import { TableAddComponent } from './table-add/table-add.component';
 import {FormsModule} from "@angular/forms";
+import { TableJoinComponent } from './table-join/table-join.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TablesComponent,
     TableComponent,
-    TableAddComponent
+    TableAddComponent,
+    TableJoinComponent
   ],
   imports: [
     BrowserModule,

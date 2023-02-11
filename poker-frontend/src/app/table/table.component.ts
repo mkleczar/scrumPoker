@@ -3,6 +3,7 @@ import {Table} from "../model/table";
 import {ActivatedRoute} from "@angular/router";
 import {PokerService} from "../poker.service";
 import {Location} from "@angular/common";
+import {TableDetails} from "../model/table-details";
 
 @Component({
   selector: 'app-table',
@@ -11,7 +12,7 @@ import {Location} from "@angular/common";
 })
 export class TableComponent {
 
-  @Input() table?: Table;
+  table?: TableDetails;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,8 +25,9 @@ export class TableComponent {
   }
 
   getTable(): void {
-    const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.pokerService.getTable(id)
+    const tableId = Number(this.route.snapshot.paramMap.get("tableId"));
+    const userId = Number(this.route.snapshot.paramMap.get("userId"));
+    this.pokerService.getTable(tableId, userId)
       .subscribe(t => this.table = t);
   }
 

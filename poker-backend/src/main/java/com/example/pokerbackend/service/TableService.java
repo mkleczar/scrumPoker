@@ -1,7 +1,7 @@
 package com.example.pokerbackend.service;
 
 import com.example.pokerapi.openapi.model.AddTableRequest;
-import com.example.pokerapi.openapi.model.AddUserRequest;
+import com.example.pokerapi.openapi.model.TableDetailsDto;
 import com.example.pokerapi.openapi.model.TableDto;
 import com.example.pokerapi.openapi.model.UserDto;
 import com.example.pokerbackend.entity.PokerTable;
@@ -9,7 +9,6 @@ import com.example.pokerbackend.entity.PokerUser;
 import com.example.pokerbackend.enums.TableRole;
 import com.example.pokerbackend.exception.TableNameDuplicatedException;
 import com.example.pokerbackend.exception.TableNotExistsException;
-import com.example.pokerbackend.exception.TableRoleNotExistsException;
 import com.example.pokerbackend.mapper.PokerTableMapper;
 import com.example.pokerbackend.mapper.PokerUserMapper;
 import com.example.pokerbackend.repository.PokerTableRepository;
@@ -42,7 +41,7 @@ public class TableService {
                         PokerTable.builder().name(request.getName()).build()));
     }
 
-    public UserDto addUserToTable(Long tableId, AddUserRequest request) {
+    public UserDto addUserToTable(Long tableId, UserDto request) {
         PokerTable table = pokerTableRepository.findById(tableId)
                 .orElseThrow(TableNotExistsException::new);
         TableRole role = TableRole.value(request.getRole());
@@ -55,5 +54,11 @@ public class TableService {
         table.getUsers().add(user);
         pokerTableRepository.save(table);
         return userMapper.map(user);
+    }
+
+    public TableDetailsDto tableDetails(Long tableId, Long userId) {
+        PokerTable table = pokerTableRepository.findById(tableId)
+                .orElseThrow(TableNotExistsException::new);
+        return pokerTableMapper.mapDetails(table);
     }
 }
