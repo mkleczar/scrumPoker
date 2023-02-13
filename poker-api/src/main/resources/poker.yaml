@@ -64,6 +64,44 @@ paths:
                 $ref: '#/components/schemas/TableDetailsDto'
         '500':
           description: Can not join to table
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /table/{tableId}/user/{userId}/status/{status}:
+    put:
+      summary: Sets status on table
+      operationId: setStatus
+      tags:
+        - table
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: status
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status was set properly
+        '500':
+          description: Can not set status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /table:
     get:
@@ -144,6 +182,8 @@ components:
           type: integer
           format: int64
         name:
+          type: string
+        status:
           type: string
         users:
           type: array

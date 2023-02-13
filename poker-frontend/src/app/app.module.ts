@@ -9,6 +9,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { TableAddComponent } from './table-add/table-add.component';
 import {FormsModule} from "@angular/forms";
 import { TableJoinComponent } from './table-join/table-join.component';
+import { TableAdminPanelComponent } from './table-admin-panel/table-admin-panel.component';
+import { TableResultsPanelComponent } from './table-results-panel/table-results-panel.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { TableJoinComponent } from './table-join/table-join.component';
     TablesComponent,
     TableComponent,
     TableAddComponent,
-    TableJoinComponent
+    TableJoinComponent,
+    TableAdminPanelComponent,
+    TableResultsPanelComponent
   ],
   imports: [
     BrowserModule,

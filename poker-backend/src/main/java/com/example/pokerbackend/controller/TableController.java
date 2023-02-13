@@ -46,4 +46,10 @@ public class TableController implements TableApi {
         return ResponseEntity.ok(tableService.addUserToTable(tableId, user));
     }
 
+    @Override
+    public ResponseEntity<Void> setStatus(Long tableId, Long userId, String status) {
+        log.info("setStatus()");
+        tableService.setStatus(tableId, userId, status);
+        return ResponseEntity.ok().build();
+    }
 }

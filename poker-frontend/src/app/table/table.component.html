@@ -1,5 +1,5 @@
 <div *ngIf="table">
-  <h2>Table {{table.name}}</h2>
+  <h2>Table {{table.name}} ({{table.status}})</h2>
 
 
   <h3>Players</h3>
@@ -8,4 +8,7 @@
       {{u.role}} - {{u.nick}}
     </li>
   </ul>
+
+  <app-table-admin-panel [table]="table" [userId]="userId"></app-table-admin-panel>
+  <app-table-results-panel [table]="table"></app-table-results-panel>
 </div>

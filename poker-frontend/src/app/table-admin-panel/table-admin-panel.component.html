@@ -1,0 +1,9 @@
+<p>Admin panel</p>
+
+<div *ngIf="table && (table.status == 'READY' || table.status == 'REVIVING')">
+  <button type="button" (click)="setStatusVoting();">Start voting</button>
+</div>
+
+<div *ngIf="table && table.status == 'VOTING'">
+  <button type="button" (click)="setStatusReveal();">Reveal results</button>
+</div>

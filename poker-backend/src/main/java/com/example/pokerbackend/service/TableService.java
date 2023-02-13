@@ -7,8 +7,10 @@ import com.example.pokerapi.openapi.model.UserDto;
 import com.example.pokerbackend.entity.PokerTable;
 import com.example.pokerbackend.entity.PokerUser;
 import com.example.pokerbackend.enums.TableRole;
+import com.example.pokerbackend.enums.TableStatus;
 import com.example.pokerbackend.exception.TableNameDuplicatedException;
 import com.example.pokerbackend.exception.TableNotExistsException;
+import com.example.pokerbackend.exception.UserActionNotAllowed;
 import com.example.pokerbackend.mapper.PokerTableMapper;
 import com.example.pokerbackend.mapper.PokerUserMapper;
 import com.example.pokerbackend.repository.PokerTableRepository;
@@ -38,7 +40,10 @@ public class TableService {
         }
         return pokerTableMapper.map(
                 pokerTableRepository.save(
-                        PokerTable.builder().name(request.getName()).build()));
+                        PokerTable.builder()
+                                .name(request.getName())
+                                .status(TableStatus.READY)
+                                .build()));
     }
 
     public UserDto addUserToTable(Long tableId, UserDto request) {
@@ -60,5 +65,19 @@ public class TableService {
         PokerTable table = pokerTableRepository.findById(tableId)
                 .orElseThrow(TableNotExistsException::new);
         return pokerTableMapper.mapDetails(table);
+    }
+
+    public void setStatus(Long tableId, Long userId, String statusStr) {
+        PokerTable table = pokerTableRepository.findById(tableId)
+                .orElseThrow(TableNotExistsException::new);
+        PokerUser user = table.getUsers().stream()
+                .filter(u -> u.getId() == userId)
+                .findAny()
+                .orElseThrow(() -> new UserActionNotAllowed(String.format("User %d is not sitting on table %d", userId, tableId)));
+       if (user.getRole() != TableRole.ADMIN) {
+           throw new UserActionNotAllowed(String.format("User %d has role %s, but only ADMIN is allowed to change status", userId, user.getRole()));
+       }
+       table.setStatus(TableStatus.valueOf(statusStr));
+       pokerTableRepository.save(table);
     }
 }

@@ -37,4 +37,9 @@ export class PokerService {
     const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/details`;
     return this.http.get<TableDetails>(url);
   }
+
+  setStatus(tableId?: number, userId?: number, status?: string):Observable<void> {
+    const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/status/${status}`;
+    return this.http.put<void>(url, "{}", this.httpOptions);
+  }
 }

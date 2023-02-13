@@ -1,6 +1,9 @@
 package com.example.pokerbackend.entity;
 
+import com.example.pokerbackend.enums.TableStatus;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,6 +28,9 @@ public class PokerTable {
     private long id;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private TableStatus status;
 
     @OneToMany(mappedBy = "table")
     private List<PokerUser> users;

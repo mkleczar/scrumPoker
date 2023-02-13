@@ -13,6 +13,7 @@ import {TableDetails} from "../model/table-details";
 export class TableComponent {
 
   table?: TableDetails;
+  userId? : number;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,8 +27,8 @@ export class TableComponent {
 
   getTable(): void {
     const tableId = Number(this.route.snapshot.paramMap.get("tableId"));
-    const userId = Number(this.route.snapshot.paramMap.get("userId"));
-    this.pokerService.getTable(tableId, userId)
+    this.userId = Number(this.route.snapshot.paramMap.get("userId"));
+    this.pokerService.getTable(tableId, this.userId)
       .subscribe(t => this.table = t);
   }
 
