@@ -11,6 +11,8 @@ import {FormsModule} from "@angular/forms";
 import { TableJoinComponent } from './table-join/table-join.component';
 import { TableAdminPanelComponent } from './table-admin-panel/table-admin-panel.component';
 import { TableResultsPanelComponent } from './table-results-panel/table-results-panel.component';
+import { TableVotingPanelComponent } from './table-voting-panel/table-voting-panel.component';
+import { TableProgressPanelComponent } from './table-progress-panel/table-progress-panel.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TableResultsPanelComponent } from './table-results-panel/table-results-
     TableAddComponent,
     TableJoinComponent,
     TableAdminPanelComponent,
-    TableResultsPanelComponent
+    TableResultsPanelComponent,
+    TableVotingPanelComponent,
+    TableProgressPanelComponent
   ],
   imports: [
     BrowserModule,

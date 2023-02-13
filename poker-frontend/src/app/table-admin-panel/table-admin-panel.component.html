@@ -1,4 +1,6 @@
-<p>Admin panel</p>
+<!-- TODO: show only if user is admin -->
+
+<h3>Admin panel</h3>
 
 <div *ngIf="table && (table.status == 'READY' || table.status == 'REVIVING')">
   <button type="button" (click)="setStatusVoting();">Start voting</button>
