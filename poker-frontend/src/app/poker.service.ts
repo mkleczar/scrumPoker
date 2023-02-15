@@ -42,4 +42,14 @@ export class PokerService {
     const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/status/${status}`;
     return this.http.put<void>(url, "{}", this.httpOptions);
   }
+
+  sendVote(tableId?: number, userId?: number, vote?: number):Observable<void> {
+    const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/vote/${vote}`;
+    return this.http.put<void>(url, "{}", this.httpOptions);
+  }
+
+  cancelVote(tableId?: number, userId?: number):Observable<void> {
+    const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/vote/cancel`;
+    return this.http.put<void>(url, "{}", this.httpOptions);
+  }
 }
