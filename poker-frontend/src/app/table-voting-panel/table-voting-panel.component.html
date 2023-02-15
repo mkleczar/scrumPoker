@@ -2,5 +2,13 @@
 
 <div *ngIf="table && (table.status == 'VOTING')">
   <h3>Voting panel</h3>
-  <p>TODO: place for your votes</p>
+  <p>Your vote is: {{selectedCard}}</p>
+  <ul>
+    <li>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </li>
+    <li *ngFor="let c of cards">
+      <button type="button" (click)="vote(c);">{{c}}</button>
+    </li>
+  </ul>
 </div>

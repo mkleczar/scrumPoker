@@ -5,7 +5,8 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
-* dodanie panelu dla głosującego (frontend - przyciski)
+* przekazać aktualnego użytkownika do stołu i jego podmodułów
+* w czasie głosowania, anulowanie głosu nie przez ustawienie zera, ale jakoś inaczej
 * obsługa wysyłania głosów (api usługi, frontend serwis i jego wywołanie w panelu, backend obsluga zapisu wynikow w bazie)
 * obsługa sprawdzania, kto już zagłosował - w stanie VOTING (modyfikacja api i backend)
 * dodanie rezultatów na panelu z wynikami głosowania (api, frontend, backend)
@@ -13,6 +14,7 @@ Tematy do zrobienia:
 * odświeżanie inicjowane przez serwer
 
 ### Done
+* dodanie panelu dla głosującego (frontend - przyciski)
 * wprowadzenie stanu w stole: gotowy, głosowanie, ujawnianie - pole w encji i na DTO prezentacja na froncie
 * wprowadzenie komendy do zmiany stanu stołu: backend + panel dla admina na froncie
 

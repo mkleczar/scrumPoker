@@ -8,4 +8,15 @@ import {TableDetails} from "../model/table-details";
 })
 export class TableVotingPanelComponent {
   @Input() table?: TableDetails;
+  cards: number[] = [1,2,3,5,8,13,21,34];
+  selectedCard?: number;
+
+  vote(card?: number):void {
+    console.log("vote: " + card)
+    this.selectedCard = card;
+  }
+  cancel():void {
+    console.log("vote canceled");
+    this.selectedCard = 0;
+  }
 }
