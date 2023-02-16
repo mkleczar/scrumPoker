@@ -31,6 +31,8 @@ public class PokerUser {
     @Enumerated(EnumType.STRING)
     private TableRole role;
 
+    private Integer vote;
+
     @ManyToOne
     @JoinColumn(name = "table_id", nullable = false)
     private PokerTable table;

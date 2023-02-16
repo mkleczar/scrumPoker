@@ -103,6 +103,68 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /table/{tableId}/user/{userId}/vote/{vote}:
+    put:
+      summary: Send player vote
+      operationId: vote
+      tags:
+        - table
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: vote
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Vote set properly
+        '500':
+          description: Can not set vote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /table/{tableId}/user/{userId}/vote/cancel:
+    put:
+      summary: Cancel last player vote
+      operationId: voteCancel
+      tags:
+        - table
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Vote canceled properly
+        '500':
+          description: Can not cancel vote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /table:
     get:
       summary: List all tables

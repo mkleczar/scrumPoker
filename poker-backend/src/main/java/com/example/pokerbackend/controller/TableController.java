@@ -52,4 +52,18 @@ public class TableController implements TableApi {
         tableService.setStatus(tableId, userId, status);
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public ResponseEntity<Void> vote(Long tableId, Long userId, Integer vote) {
+        log.info("vote()");
+        tableService.vote(tableId, userId, vote);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> voteCancel(Long tableId, Long userId) {
+        log.info("voteCancel()");
+        tableService.voteCancel(tableId, userId);
+        return ResponseEntity.ok().build();
+    }
 }
