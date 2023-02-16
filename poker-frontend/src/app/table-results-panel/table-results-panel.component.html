@@ -1,4 +1,10 @@
 <div *ngIf="table && table.status == 'REVIVING'">
   <h3>Voting results panel</h3>
-  <p>TODO: show all votes, avg, etc</p>
+  <ul>
+    <ng-container *ngFor="let u of table.users">
+      <li *ngIf="u.role == 'PLAYER'">
+        {{u.nick}} - {{u.vote}}
+      </li>
+    </ng-container>
+  </ul>
 </div>
