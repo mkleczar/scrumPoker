@@ -1,5 +1,6 @@
 export interface User {
   id: number;
   nick: string;
-  role: string
+  role: string;
+  vote?: number;
 }

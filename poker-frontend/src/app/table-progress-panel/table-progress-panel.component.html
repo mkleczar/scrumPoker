@@ -1,4 +1,16 @@
 <div *ngIf="table && (table.status == 'VOTING')">
   <h3>Progress panel</h3>
-  <p>TODO: show who already voted, who don't</p>
+
+  <ul>
+    <ng-container *ngFor="let u of table.users">
+      <li *ngIf="u.role == 'PLAYER'">
+        {{u.nick}} - <ng-container *ngIf="u.vote; else noVote">OK!</ng-container>
+      </li>
+      <ng-template #noVote>
+        no vote yet!
+      </ng-template>
+    </ng-container>
+  </ul>
 </div>
+
+
