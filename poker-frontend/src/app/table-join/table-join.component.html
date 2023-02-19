@@ -1,8 +1,21 @@
-<h3>Joining to table</h3>
-<div>
-  <label for="user-nickname">User nickname:</label>
-  <input id="user-nickname" #userName placeholder="nickname">
-  <label for="user-role">User role:</label>
-  <input id="user-role" #userRole placeholder="role">
-  <button type="button" class="add-button" (click)="joinTable(userName.value, userRole.value);">Join table</button>
-</div>
+  <div class="flex-1 w-fit bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
+    <p-card header="Joining to table" [style]="{'margin':'1em'}">
+        <div class="field grid">
+          <label for="user-nickname">User nickname:</label>
+          <input id="user-nickname" #userName type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="field grid">
+          <label for="user-role">User role:</label>
+          <!--<input id="user-role" #userRole type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">-->
+          <p-dropdown id="user-role" [options]="ROLES" [(ngModel)]="selectedRole" optionLabel="name" optionValue="code" #userRole
+                      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+          </p-dropdown>
+        </div>
+
+        <button type="button" class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
+                (click)="joinTable(userName.value, userRole.value);">
+          Join table</button>
+    </p-card>
+
+  </div>

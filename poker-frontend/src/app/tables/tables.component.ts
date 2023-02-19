@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Table } from "../model/table";
 import { PokerService } from "../poker.service";
+import { CardModule } from "primeng/card";
 
 @Component({
   selector: 'app-tables',

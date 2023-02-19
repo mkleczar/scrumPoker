@@ -8,16 +8,16 @@ Tematy do zrobienia:
 * przekazać aktualnego użytkownika do stołu i jego podmodułów
 * w czasie głosowania, anulowanie głosu nie przez ustawienie zera, ale jakoś inaczej
 * panel głosowania frontend - poprawić wygląd, sposób zaznaczenia wybranek karty, etc.
-* obsługa sprawdzania, kto już zagłosował - w stanie VOTING (modyfikacja api i backend)
-* dodanie rezultatów na panelu z wynikami głosowania (api, frontend, backend)
-* dodanie wartości na panelu z wynikami - w stanie REVIVING (api, backend i frontend)
 * odświeżanie inicjowane przez serwer
 
 ### Working
-* obsługa wysyłania głosów (api usługi, frontend serwis i jego wywołanie w panelu, backend obsluga zapisu wynikow w bazie)
 
 
 ### Done
+* obsługa sprawdzania, kto już zagłosował - w stanie VOTING (modyfikacja api i backend)
+* dodanie rezultatów na panelu z wynikami głosowania (api, frontend, backend)
+* dodanie wartości na panelu z wynikami - w stanie REVIVING (api, backend i frontend)
+* obsługa wysyłania głosów (api usługi, frontend serwis i jego wywołanie w panelu, backend obsluga zapisu wynikow w bazie)
 * dodanie panelu dla głosującego (frontend - przyciski)
 * wprowadzenie stanu w stole: gotowy, głosowanie, ujawnianie - pole w encji i na DTO prezentacja na froncie
 * wprowadzenie komendy do zmiany stanu stołu: backend + panel dla admina na froncie

@@ -2,12 +2,20 @@ import { Component } from '@angular/core';
 import { PokerService } from "../poker.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
+interface Role {
+  name: string,
+  code: string
+}
+
 @Component({
   selector: 'app-table-join',
   templateUrl: './table-join.component.html',
   styleUrls: ['./table-join.component.css']
 })
 export class TableJoinComponent {
+
+  ROLES: Role[] = [{name: 'Admin', code: 'ADMIN'}, {name:'Player', code: "PLAYER"}, {name: 'Spectator', code:"SPECTATOR"}];
+  selectedRole?: string;
 
   constructor(
     private pokerService: PokerService,

@@ -13,6 +13,12 @@ import { TableAdminPanelComponent } from './table-admin-panel/table-admin-panel.
 import { TableResultsPanelComponent } from './table-results-panel/table-results-panel.component';
 import { TableVotingPanelComponent } from './table-voting-panel/table-voting-panel.component';
 import { TableProgressPanelComponent } from './table-progress-panel/table-progress-panel.component';
+import {CardModule} from "primeng/card";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
+import {DropdownModule} from "primeng/dropdown";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -28,9 +34,15 @@ import { TableProgressPanelComponent } from './table-progress-panel/table-progre
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CardModule,
+    TableModule,
+    ButtonModule,
+    RippleModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
