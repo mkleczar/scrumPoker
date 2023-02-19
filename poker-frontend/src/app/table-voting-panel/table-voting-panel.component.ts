@@ -3,6 +3,12 @@ import {TableDetails} from "../model/table-details";
 import {PokerService} from "../poker.service";
 import {ActivatedRoute} from "@angular/router";
 
+
+interface Card {
+  name: string,
+  code: number
+}
+
 @Component({
   selector: 'app-table-voting-panel',
   templateUrl: './table-voting-panel.component.html',
@@ -10,7 +16,16 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TableVotingPanelComponent {
   @Input() table?: TableDetails;
-  cards: number[] = [1,2,3,5,8,13,21,34];
+  cards: Card[] = [
+    {name: '1', code: 1},
+    {name: '2', code: 2},
+    {name: '3', code: 3},
+    {name: '5', code: 5},
+    {name: '8', code: 8},
+    {name: '13', code: 13},
+    {name: '21', code: 21},
+    {name: '34', code: 34}];
+
   selectedCard?: number;
   userId?: number;
 

@@ -1,10 +1,31 @@
 <div *ngIf="table && table.status == 'REVIVING'">
-  <h3>Voting results panel</h3>
-  <ul>
-    <ng-container *ngFor="let u of table.users">
-      <li *ngIf="u.role == 'PLAYER'">
-        {{u.nick}} - {{u.vote}}
-      </li>
-    </ng-container>
-  </ul>
+
+
+  <p-card header="Voting results panel" [style]="{'margin':'1em'}">
+
+    <p-table [value]="table.users" [tableStyle]="{'min-width': '50rem'}">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Player</th>
+          <th>Vote</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-player>
+        <ng-container *ngIf="player.role == 'PLAYER'">
+          <tr>
+            <td>{{player.nick}}</td>
+            <td>{{player.vote}} </td>
+          </tr>
+        </ng-container>
+      </ng-template>
+    </p-table>
+
+  </p-card>
+
+
+  <p-card header="Votes distribution" [style]="{'margin':'1em'}">
+    <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+  </p-card>
+
+  <button (click)="refresh()">Refresh</button>
 </div>

@@ -8,5 +8,6 @@ import {TableDetails} from "../model/table-details";
 })
 export class TableProgressPanelComponent {
 
+
   @Input() table?: TableDetails;
 }

@@ -1,14 +1,15 @@
 <!-- TODO: show only if user is player -->
 
 <div *ngIf="table && (table.status == 'VOTING')">
-  <h3>Voting panel</h3>
-  <p>Your vote is: {{selectedCard}}</p>
-  <ul>
-    <li>
-      <button type="button" (click)="cancel()">Cancel</button>
-    </li>
-    <li *ngFor="let c of cards">
-      <button type="button" (click)="vote(c);">{{c}}</button>
-    </li>
-  </ul>
+
+  <p-card header="Voting panel" [style]="{'margin':'1em'}">
+
+    <p-selectButton [options]="cards" [(ngModel)]="selectedCard" optionLabel="name" optionValue="code" (onChange)="vote(selectedCard)"></p-selectButton>
+
+    <ng-template pTemplate="footer">
+      <button type="button" class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
+              (click)="cancel()">Cancel vote!</button>
+    </ng-template>
+
+  </p-card>
 </div>

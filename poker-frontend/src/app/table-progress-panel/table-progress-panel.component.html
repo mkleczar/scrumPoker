@@ -1,16 +1,31 @@
 <div *ngIf="table && (table.status == 'VOTING')">
-  <h3>Progress panel</h3>
 
-  <ul>
-    <ng-container *ngFor="let u of table.users">
-      <li *ngIf="u.role == 'PLAYER'">
-        {{u.nick}} - <ng-container *ngIf="u.vote; else noVote">OK!</ng-container>
-      </li>
-      <ng-template #noVote>
-        no vote yet!
+
+  <p-card header="Progress panel" [style]="{'margin':'1em'}">
+    <p-table [value]="table.users" [tableStyle]="{'min-width': '50rem'}">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Player</th>
+          <th>Status</th>
+        </tr>
       </ng-template>
-    </ng-container>
-  </ul>
+      <ng-template pTemplate="body" let-player>
+        <ng-container *ngIf="player.role == 'PLAYER'">
+          <tr>
+            <td>{{player.nick}}</td>
+            <td>
+              <ng-container *ngIf="player.vote; else noVote">
+                <p-tag severity="success" value="Vote"></p-tag>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #noVote>
+          <p-tag severity="danger" value="No vote"></p-tag>
+        </ng-template>
+      </ng-template>
+    </p-table>
+  </p-card>
 </div>
 
 

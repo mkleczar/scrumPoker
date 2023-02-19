@@ -19,6 +19,9 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {DropdownModule} from "primeng/dropdown";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SelectButtonModule} from "primeng/selectbutton";
+import {TagModule} from "primeng/tag";
+import {ChartModule} from "primeng/chart";
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     TableModule,
     ButtonModule,
     RippleModule,
-    DropdownModule
+    DropdownModule,
+    SelectButtonModule,
+    TagModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
