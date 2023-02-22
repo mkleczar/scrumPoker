@@ -20,7 +20,7 @@
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-user>
-            <tr>
+            <tr [ngClass]="{'font-bold':user.id == userId}">
               <td>{{user.nick}}</td>
               <td>{{user.role}}</td>
             </tr>

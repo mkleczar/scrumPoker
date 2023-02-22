@@ -39,6 +39,11 @@ export class PokerService {
     return this.http.post<User>(url, user, this.httpOptions);
   }
 
+  getUser(userId: number): Observable<User> {
+    const url = `${this.pokerUrl}/user/${userId}`;
+    return this.http.get<User>(url);
+  }
+
 
   getTable(tableId: number, userId: number):Observable<TableDetails> {
     const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/details`;

@@ -80,4 +80,10 @@ public class TableController implements TableApi {
         tableService.voteCancel(tableId, userId);
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public ResponseEntity<UserDto> user(Long userId) {
+       log.info("user()");
+       return ResponseEntity.ok(tableService.getUser(userId));
+    }
 }

@@ -3,6 +3,27 @@ info:
   version: 0.0.1
   title: Scrum Poker
 paths:
+  /user/{userId}:
+    get:
+      summary: Details for user
+      operationId: user
+      tags:
+        - table
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+
   /table/{tableId}/join:
     post:
       summary: Add new user to table

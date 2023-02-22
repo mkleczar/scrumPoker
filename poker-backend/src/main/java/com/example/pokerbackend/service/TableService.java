@@ -11,6 +11,7 @@ import com.example.pokerbackend.enums.TableStatus;
 import com.example.pokerbackend.exception.TableNameDuplicatedException;
 import com.example.pokerbackend.exception.TableNotExistsException;
 import com.example.pokerbackend.exception.UserActionNotAllowed;
+import com.example.pokerbackend.exception.UserNotFoundException;
 import com.example.pokerbackend.mapper.PokerTableMapper;
 import com.example.pokerbackend.mapper.PokerUserMapper;
 import com.example.pokerbackend.repository.PokerTableRepository;
@@ -60,6 +61,12 @@ public class TableService {
         table.getUsers().add(user);
         pokerTableRepository.save(table);
         return userMapper.map(user);
+    }
+
+    public UserDto getUser(Long userId) {
+        return userRepository.findById(userId)
+                .map(userMapper::map)
+                .orElseThrow(UserNotFoundException::new);
     }
 
     public TableDetailsDto tableDetails(Long tableId, Long userId) {
