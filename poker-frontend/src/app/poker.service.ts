@@ -4,6 +4,7 @@ import { Observable, of } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "./model/user";
 import {TableDetails} from "./model/table-details";
+import {SseService} from "./sse.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,16 @@ export class PokerService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private sse: SseService) { }
 
   getTables(): Observable<Table[]> {
     return this.http.get<Table[]>(this.pokerUrl + "/table");
+  }
+
+  getTablesReact(): Observable<Table[]> {
+    const url = this.pokerUrl + "/react/table";
+    return this.sse.getServerSentEvent(url);
   }
 
   addTable(name: string): Observable<Table> {

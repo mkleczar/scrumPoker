@@ -14,6 +14,7 @@ export class TablesComponent {
 
   ngOnInit(): void {
     this.getTables();
+    this.getTablesReact();
   }
 
   constructor(private pokerService: PokerService) {
@@ -22,5 +23,16 @@ export class TablesComponent {
   getTables(): void {
     this.pokerService.getTables()
       .subscribe(t => this.tables = t);
+  }
+
+  getTablesReact(): void {
+    this.pokerService.getTablesReact()
+      .subscribe({
+        next: t => {
+          //console.log(t)
+          this.tables = t
+        },
+        error: err => console.log("Znaleziony błąd: " + err.error)
+      })
   }
 }
