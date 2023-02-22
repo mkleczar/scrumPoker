@@ -34,7 +34,7 @@ export class PokerService {
     return this.http.post<Table>(url, req, this.httpOptions);
   }
 
-  joinToTable(table: Table, user: User): Observable<User> {
+  joinToTable(table: { name: string; id: number | undefined }, user: User): Observable<User> {
     const url = `${this.pokerUrl}/table/${table.id}/join`;
     return this.http.post<User>(url, user, this.httpOptions);
   }

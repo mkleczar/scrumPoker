@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: "", redirectTo: "/tables", pathMatch: "full"},
   {path: "tables", component: TablesComponent},
   {path: "table/:tableId/user/:userId", component: TableComponent},
-  {path: "table/:id/join", component: TableJoinComponent}
+  {path: "table/:id/:name/join", component: TableJoinComponent}
 ];
 
 @NgModule({
