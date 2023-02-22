@@ -50,6 +50,11 @@ export class PokerService {
     return this.http.get<TableDetails>(url);
   }
 
+  getTableReact(tableId: number):Observable<TableDetails> {
+    const url = `${this.pokerUrl}/react/table/${tableId}/details`;
+    return this.sse.getServerSentEvent(url);
+  }
+
   setStatus(tableId?: number, userId?: number, status?: string):Observable<void> {
     const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/status/${status}`;
     return this.http.put<void>(url, "{}", this.httpOptions);

@@ -27,12 +27,25 @@ export class TableComponent {
     this.userId = Number(this.route.snapshot.paramMap.get("userId"));
     this.getUser(this.userId);
     this.getTable();
+    this.getTableReact();
   }
 
   getTable(): void {
     const tableId = Number(this.route.snapshot.paramMap.get("tableId"));
     this.pokerService.getTable(tableId, this.userId)
       .subscribe(t => this.table = t);
+  }
+
+  getTableReact(): void {
+    const tableId = Number(this.route.snapshot.paramMap.get("tableId"));
+    this.pokerService.getTableReact(tableId)
+      .subscribe({
+        next: t => {
+          console.log(t);
+          this.table = t;
+        },
+        error: err => console.log("Znaleziony błąd: " + err.error)
+      });
   }
 
   getUser(userId: number): void {
