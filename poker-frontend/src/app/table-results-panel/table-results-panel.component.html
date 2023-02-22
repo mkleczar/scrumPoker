@@ -1,8 +1,6 @@
-<div *ngIf="table && table.status == 'REVIVING'">
-
+<div *ngIf="table">
 
   <p-card header="Voting results panel" [style]="{'margin':'1em'}">
-
     <p-table [value]="table.users" [tableStyle]="{'min-width': '50rem'}">
       <ng-template pTemplate="header">
         <tr>
@@ -19,7 +17,6 @@
         </ng-container>
       </ng-template>
     </p-table>
-
   </p-card>
 
 

@@ -1,6 +1,4 @@
-<div *ngIf="table && (table.status == 'VOTING')">
-
-
+<div *ngIf="table">
   <p-card header="Progress panel" [style]="{'margin':'1em'}">
     <p-table [value]="table.users" [tableStyle]="{'min-width': '50rem'}">
       <ng-template pTemplate="header">
@@ -14,7 +12,7 @@
           <tr>
             <td>{{player.nick}}</td>
             <td>
-              <ng-container *ngIf="player.vote; else noVote">
+              <ng-container *ngIf="player && player.vote; else noVote">
                 <p-tag severity="success" value="Vote"></p-tag>
               </ng-container>
             </td>
@@ -27,5 +25,3 @@
     </p-table>
   </p-card>
 </div>
-
-

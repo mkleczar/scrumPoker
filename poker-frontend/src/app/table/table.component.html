@@ -29,7 +29,7 @@
       </p-card>
     </div>
 
-    <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
+    <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="user && user.role == 'ADMIN'">
       <app-table-admin-panel [table]="table" [userId]="userId"></app-table-admin-panel>
     </div>
 
@@ -37,17 +37,18 @@
 </div>
 <div class="flex flex-row card-container" [style]="{'margin':'1em'}">
 
-  <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
+  <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && (table.status == 'VOTING')">
     <app-table-progress-panel [table]="table"></app-table-progress-panel>
   </div>
 
-  <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
+  <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && (table.status == 'VOTING') && user && user.role == 'PLAYER'">
+    <div >
     <app-table-voting-panel [table]="table"></app-table-voting-panel>
   </div>
 </div>
 
 <div class="flex flex-row card-container" [style]="{'margin':'1em'}">
-  <div class="flex-row bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
+  <div class="flex-row bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && table.status == 'REVIVING'">
     <app-table-results-panel [table]="table"></app-table-results-panel>
   </div>
 </div>

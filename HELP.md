@@ -5,15 +5,24 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
-* przekazać aktualnego użytkownika do stołu i jego podmodułów
+* znacznik w czasie głosowania, że wszyscy uprawnieni już zagłosowali
+* lepsze ustawienie komponentów na ekranie
+* przeniesienie styli do plików CSS (stworzenie i użycie wspólnych klas)
+* wykres dystrybucji głosów powinien się sam odświeżać
+* przycisk na panelu uczestników przy aktualnej osobie, do opuszczenia stołu
+* sygnalizacja, że brak admina
 * w czasie głosowania, anulowanie głosu nie przez ustawienie zera, ale jakoś inaczej
-* panel głosowania frontend - poprawić wygląd, sposób zaznaczenia wybranek karty, etc.
-* odświeżanie inicjowane przez serwer
+* lepszy panel głosowania, oddający różnicę pomiędzy poszczególnymi opcjami
+* dynamiczna, wczytywana z bazy skala, możliwa do zmiany przez administratora na stole
+* inny kolor tła, dla różnego typu aktorów np: PLAYER - zielony, ADMIN - żółty, SPECTATOR - niebieski
 
 ### Working
 
 
 ### Done
+* odświeżanie inicjowane przez serwer
+* panel głosowania frontend - poprawić wygląd, sposób zaznaczenia wybranek karty, etc.
+* przekazać aktualnego użytkownika do stołu i jego podmodułów
 * obsługa sprawdzania, kto już zagłosował - w stanie VOTING (modyfikacja api i backend)
 * dodanie rezultatów na panelu z wynikami głosowania (api, frontend, backend)
 * dodanie wartości na panelu z wynikami - w stanie REVIVING (api, backend i frontend)
