@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {Table} from "../model/table";
 import {ActivatedRoute} from "@angular/router";
 import {PokerService} from "../poker.service";
 import {Location} from "@angular/common";

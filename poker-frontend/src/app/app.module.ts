@@ -22,6 +22,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SelectButtonModule} from "primeng/selectbutton";
 import {TagModule} from "primeng/tag";
 import {ChartModule} from "primeng/chart";
+import { TableTeamComponent } from './table-team/table-team.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {ChartModule} from "primeng/chart";
     TableAdminPanelComponent,
     TableResultsPanelComponent,
     TableVotingPanelComponent,
-    TableProgressPanelComponent
+    TableProgressPanelComponent,
+    TableTeamComponent
   ],
   imports: [
     BrowserModule,

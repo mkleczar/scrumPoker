@@ -5,6 +5,9 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
+* przerobienie komponentów użytych w table na dummy components (z @Input i @Output)
+* query params w formie observera
+* table jako osobny moduł?
 * znacznik w czasie głosowania, że wszyscy uprawnieni już zagłosowali
 * lepsze ustawienie komponentów na ekranie
 * przeniesienie styli do plików CSS (stworzenie i użycie wspólnych klas)

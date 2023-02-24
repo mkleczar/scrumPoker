@@ -1,8 +1,8 @@
 <div *ngIf="table">
 
-  <div class="flex flex-row" [style]="{'margin':'1em'}">
+  <div class="flex flex-row" [style]="{'margin':'0.5em'}">
     <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
-      <div class="p-component p-card" [style]="{'margin':'1em', 'padding':'0.5em'}">
+      <div class="p-component p-card" [style]="{'margin':'0.5em', 'padding':'0.5em'}">
         <h2>Table {{table.name}} ({{table.status}})</h2>
       </div>
     </div>
@@ -10,36 +10,25 @@
 
   <div class="flex flex-row" [style]="{'margin':'1em'}">
 
-    <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
-      <p-card header="Players" [style]="{'margin':'1em'}">
-        <p-table [value]="table.users" [tableStyle]="{'min-width': '50rem'}">
-          <ng-template pTemplate="header">
-            <tr>
-              <th>Nick</th>
-              <th>Role</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-user>
-            <tr [ngClass]="{'font-bold':user.id == userId}">
-              <td>{{user.nick}}</td>
-              <td>{{user.role}}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </p-card>
+    <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
+      <app-table-team [table]="table" [user]="user"></app-table-team>
     </div>
 
-    <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="user && user.role == 'ADMIN'">
+    <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && (table.status == 'VOTING')">
+      <app-table-progress-panel [table]="table"></app-table-progress-panel>
+    </div>
+
+    <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && table.status == 'REVIVING'">
+      <app-table-results-panel [table]="table"></app-table-results-panel>
+    </div>
+
+    <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="user && user.role == 'ADMIN'">
       <app-table-admin-panel [table]="table" [userId]="userId"></app-table-admin-panel>
     </div>
 
   </div>
 </div>
 <div class="flex flex-row card-container" [style]="{'margin':'1em'}">
-
-  <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && (table.status == 'VOTING')">
-    <app-table-progress-panel [table]="table"></app-table-progress-panel>
-  </div>
 
   <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && (table.status == 'VOTING') && user && user.role == 'PLAYER'">
     <div >
@@ -48,7 +37,4 @@
 </div>
 
 <div class="flex flex-row card-container" [style]="{'margin':'1em'}">
-  <div class="flex-row bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && table.status == 'REVIVING'">
-    <app-table-results-panel [table]="table"></app-table-results-panel>
-  </div>
 </div>

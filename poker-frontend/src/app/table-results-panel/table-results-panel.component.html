@@ -1,7 +1,7 @@
 <div *ngIf="table">
 
-  <p-card header="Voting results panel" [style]="{'margin':'1em'}">
-    <p-table [value]="table.users" [tableStyle]="{'min-width': '50rem'}">
+  <p-card header="Voting results panel" [style]="{'margin':'0.5em'}">
+    <p-table [value]="table.users" [tableStyle]="{'min-width': '25rem'}">
       <ng-template pTemplate="header">
         <tr>
           <th>Player</th>
@@ -20,9 +20,11 @@
   </p-card>
 
 
+  <!--
   <p-card header="Votes distribution" [style]="{'margin':'1em'}">
     <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
   </p-card>
 
   <button (click)="refresh()">Refresh</button>
+  -->
 </div>
