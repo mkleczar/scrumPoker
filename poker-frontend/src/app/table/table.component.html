@@ -19,7 +19,7 @@
     </div>
 
     <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="table && table.status == 'REVIVING'">
-      <app-table-results-panel [table]="table"></app-table-results-panel>
+      <app-table-results-panel [users]="table.users"></app-table-results-panel>
     </div>
 
     <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="user && user.role == 'ADMIN'">

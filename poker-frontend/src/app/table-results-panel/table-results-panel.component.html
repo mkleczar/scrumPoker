@@ -1,7 +1,7 @@
-<div *ngIf="table">
+<div *ngIf="users">
 
   <p-card header="Voting results panel" [style]="{'margin':'0.5em'}">
-    <p-table [value]="table.users" [tableStyle]="{'min-width': '25rem'}">
+    <p-table [value]="users" [tableStyle]="{'min-width': '25rem'}">
       <ng-template pTemplate="header">
         <tr>
           <th>Player</th>
@@ -10,11 +10,20 @@
       </ng-template>
       <ng-template pTemplate="body" let-player>
         <ng-container *ngIf="player.role == 'PLAYER'">
-          <tr>
+          <tr [ngClass]="{'text-red-500': max && player.vote == max, 'text-green-500': min && player.vote == min}">
             <td>{{player.nick}}</td>
             <td>{{player.vote}} </td>
           </tr>
         </ng-container>
+      </ng-template>
+      <ng-template pTemplate="summary">
+
+        <p-tag *ngIf="isPerfect" severity="success" value="Perfect!"></p-tag>
+        Avg: {{average | number:'1.2-2'}}
+        <!--
+        Min: {{min}}
+        Max: {{max}}
+        -->
       </ng-template>
     </p-table>
   </p-card>

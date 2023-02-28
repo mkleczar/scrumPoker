@@ -51,5 +51,4 @@ export class TableComponent {
     this.pokerService.getUser(userId)
       .subscribe(u => this.user = u);
   }
-
 }
