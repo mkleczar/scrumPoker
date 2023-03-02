@@ -1,16 +1,19 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PokerService} from "../poker.service";
 import {Location} from "@angular/common";
 import {TableDetails} from "../model/table-details";
 import {User} from "../model/user";
+import {TableStatus} from "../model/table-status";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
+
+  TableStatusType = TableStatus;
 
   table?: TableDetails;
   userId : number = -1;
