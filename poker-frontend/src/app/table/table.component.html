@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4" *ngIf="user && user.role == 'ADMIN'">
-      <app-table-admin-panel [table]="table" [userId]="userId"></app-table-admin-panel>
+      <app-table-admin-panel [tableId]="table.id" [tableStatus]="table.status" [userId]="userId"></app-table-admin-panel>
     </div>
 
   </div>
