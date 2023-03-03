@@ -53,6 +53,12 @@ public class TableService {
 
     public UserDto addUserToTable(Long tableId, UserDto request) {
         PokerTable table = findTable(tableId);
+        if (StringUtils.isBlank(request.getNick())) {
+            throw ExceptionEnum.USER_NAME_EMPTY.asException();
+        }
+        if (table.containsUserByNick(request.getNick())) {
+            throw ExceptionEnum.USER_NAME_DUPLICATED.asException();
+        }
         TableRole role = TableRole.value(request.getRole());
         PokerUser user = PokerUser.builder()
                 .nick(request.getNick())

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PokerService } from "../poker.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserRole} from "../model/user-role";
+import {MessageService} from "primeng/api";
 
 interface Role {
   name: string,
@@ -26,6 +27,7 @@ export class TableJoinComponent {
   tableName?: string | null;
 
   constructor(
+    private messageService: MessageService,
     private pokerService: PokerService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -39,6 +41,9 @@ export class TableJoinComponent {
 
   joinTable(userName: string, userRole: UserRole) {
     this.pokerService.joinToTable({id: this.tableId, name: ''}, {id: 0, nick: userName, role: userRole})
-      .subscribe(u => this.router.navigateByUrl(`/table/${this.tableId}/user/${u.id}`));
+      .subscribe({
+        next: u => this.router.navigateByUrl(`/table/${this.tableId}/user/${u.id}`),
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message})
+      });
   }
 }

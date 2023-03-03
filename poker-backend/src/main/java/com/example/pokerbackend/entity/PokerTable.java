@@ -34,4 +34,10 @@ public class PokerTable {
 
     @OneToMany(mappedBy = "table")
     private List<PokerUser> users;
+
+    public boolean containsUserByNick(String name) {
+        return users.stream()
+                .map(PokerUser::getNick)
+                .anyMatch(n -> n.equals(name));
+    }
 }
