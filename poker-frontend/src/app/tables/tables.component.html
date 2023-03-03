@@ -2,7 +2,11 @@
 <div class="card">
   <div class="flex flex-row card-container">
     <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
-      <p-card header="List of all tables" [style]="{'margin':'1em'}">
+      <p-card header="No tables... why don't you add one?" [style]="{'margin':'1em'}"
+              *ngIf="tables.length == 0">
+      </p-card>
+      <p-card header="List of all tables" [style]="{'margin':'1em'}"
+              *ngIf="tables.length > 0">
         <p-table [value]="tables" [tableStyle]="{'min-width': '50rem'}">
           <ng-template pTemplate="header">
             <tr>
