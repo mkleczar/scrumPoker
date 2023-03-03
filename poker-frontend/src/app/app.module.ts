@@ -23,6 +23,9 @@ import {SelectButtonModule} from "primeng/selectbutton";
 import {TagModule} from "primeng/tag";
 import {ChartModule} from "primeng/chart";
 import { TableTeamComponent } from './table-team/table-team.component';
+import {MessagesModule} from "primeng/messages";
+import {MessageModule} from "primeng/message";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { TableTeamComponent } from './table-team/table-team.component';
     DropdownModule,
     SelectButtonModule,
     TagModule,
-    ChartModule
+    ChartModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
