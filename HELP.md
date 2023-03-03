@@ -5,7 +5,7 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
-* zablokowanie możliwości dodania listy o pustej nazwie
+* zablokowanie możliwości dodania do stołu osoby o takim samym imieniu
 * usuwanie stołów z listy - tylko gdy są puste (obsługa błędu na messageService)
 * na liście stołów dodać licznik obecnych osób
 * wyświetlanie błędów z serwera w formie pasków
@@ -28,6 +28,7 @@ Tematy do zrobienia:
 
 
 ### Done
+* zablokowanie możliwości dodania listy o pustej nazwie
 * jeżeli brak stołów, to wyświetla się komunikat a nie pusta tabela
 * wprowadzenie enumów do statusów i innychtego typu miejsc
 * odświeżanie inicjowane przez serwer

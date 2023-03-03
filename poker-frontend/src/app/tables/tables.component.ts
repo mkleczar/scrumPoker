@@ -15,7 +15,6 @@ export class TablesComponent implements OnInit{
   ngOnInit(): void {
     this.getTables();
     this.getTablesReact();
-    this.messagesService.add({severity:'error', summary:'Error', detail:'Message Content'});
   }
 
   constructor(private pokerService: PokerService,

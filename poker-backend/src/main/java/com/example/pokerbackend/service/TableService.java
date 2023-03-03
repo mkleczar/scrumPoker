@@ -8,20 +8,19 @@ import com.example.pokerbackend.entity.PokerTable;
 import com.example.pokerbackend.entity.PokerUser;
 import com.example.pokerbackend.enums.TableRole;
 import com.example.pokerbackend.enums.TableStatus;
-import com.example.pokerbackend.exception.TableNameDuplicatedException;
-import com.example.pokerbackend.exception.TableNotExistsException;
-import com.example.pokerbackend.exception.UserActionNotAllowed;
+import com.example.pokerbackend.exception.ExceptionEnum;
+import com.example.pokerbackend.exception.UserActionException;
 import com.example.pokerbackend.exception.UserNotFoundException;
 import com.example.pokerbackend.mapper.PokerTableMapper;
 import com.example.pokerbackend.mapper.PokerUserMapper;
 import com.example.pokerbackend.repository.PokerTableRepository;
 import com.example.pokerbackend.repository.PokerUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 @Service
 @RequiredArgsConstructor
@@ -38,8 +37,11 @@ public class TableService {
     }
 
     public TableDto addTable(AddTableRequest request) {
+        if (StringUtils.isBlank(request.getName())) {
+            throw ExceptionEnum.TABLE_NAME_EMPTY.asException();
+        }
         if (pokerTableRepository.findPokerTableByName(request.getName()).size() > 0) {
-            throw new TableNameDuplicatedException();
+            throw ExceptionEnum.TABLE_NAME_DUPLICATED.asException();
         }
         return pokerTableMapper.map(
                 pokerTableRepository.save(
@@ -111,20 +113,20 @@ public class TableService {
 
     private PokerTable findTable(Long tableId) {
         return pokerTableRepository.findById(tableId)
-                .orElseThrow(TableNotExistsException::new);
+                .orElseThrow(ExceptionEnum.TABLE_NOT_EXISTS::asException);
     }
 
     private PokerUser findTableUser(PokerTable table, Long userId) {
         return table.getUsers().stream()
                 .filter(u -> u.getId() == userId)
                 .findAny()
-                .orElseThrow(() -> new UserActionNotAllowed(String.format("User %d is not sitting on table %d", userId, table.getId())));
+                .orElseThrow(() -> new UserActionException(String.format("User %d is not sitting on table %d", userId, table.getId())));
     }
 
     private Consumer<PokerUser> userHasRole(TableRole role) {
         return user -> {
             if (role != user.getRole()) {
-                throw new UserActionNotAllowed(String.format("User %d has role %s, but only ADMIN is allowed to change status", user.getId(), user.getRole()));
+                throw new UserActionException(String.format("User %d has role %s, but only ADMIN is allowed to change status", user.getId(), user.getRole()));
             }
         };
     }
