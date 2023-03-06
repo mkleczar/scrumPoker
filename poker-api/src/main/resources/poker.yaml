@@ -225,6 +225,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /table/{tableId}:
+    delete:
+      summary: Delete table if no one is in
+      operationId: deleteTable
+      tags:
+        - table
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Table deleted properly
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TableDto'
+        '500':
+          description: Table cant be deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
 
 components:

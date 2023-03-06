@@ -113,6 +113,15 @@ public class TableService {
         userRepository.save(user);
     }
 
+    public List<TableDto> deleteTable(Long tableId) {
+        PokerTable table = findTable(tableId);
+        if (table.countUsers() > 0) {
+            throw ExceptionEnum.TABLE_USERS_PRESENT.asException();
+        }
+        pokerTableRepository.delete(table);
+        return allTables();
+    }
+
     private void cleanVotes(PokerTable table) {
         table.getUsers().forEach(u -> u.setVote(null));
     }

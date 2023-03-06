@@ -40,4 +40,8 @@ public class PokerTable {
                 .map(PokerUser::getNick)
                 .anyMatch(n -> n.equals(name));
     }
+
+    public int countUsers() {
+        return users.size();
+    }
 }

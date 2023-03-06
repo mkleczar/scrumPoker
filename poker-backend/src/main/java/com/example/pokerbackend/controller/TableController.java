@@ -104,6 +104,12 @@ public class TableController implements TableApi {
        return ResponseEntity.ok(tableService.getUser(userId));
     }
 
+    @Override
+    public ResponseEntity<List<TableDto>> deleteTable(Long tableId) {
+        log.info("deleteTable()");
+        return ResponseEntity.ok(tableService.deleteTable(tableId));
+    }
+
     private void emitTableDetails(Long tableId, Long userId) {
         if(tableDetailsSinkMap.containsKey(tableId)) {
             TableDetailsDto tableDetailsDto = tableService.tableDetails(tableId, userId);

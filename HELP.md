@@ -5,9 +5,7 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
-* usuwanie stołów z listy - tylko gdy są puste (obsługa błędu na messageService)
-* na liście stołów dodać licznik obecnych osób
-* wyświetlanie błędów z serwera w formie pasków
+* przycisk na liście Players na stole do opuszczania stołu
 * dodanie środowiska, które będzie przechowywać np: url backendu
 * przerobienie komponentów użytych w table na dummy components (z @Input i @Output)
 * query params w formie observera
@@ -23,13 +21,18 @@ Tematy do zrobienia:
 * dynamiczna, wczytywana z bazy skala, możliwa do zmiany przez administratora na stole
 * inny kolor tła, dla różnego typu aktorów np: PLAYER - zielony, ADMIN - żółty, SPECTATOR - niebieski
 
+### TODO second version
+* na liście stołów dodać licznik obecnych osób
+
 ### Working
 
 
 ### Done
+* usuwanie stołów z listy - tylko gdy są puste (obsługa błędu na messageService)
 * zablokowanie możliwości dodania do stołu osoby o takim samym imieniu i o pustym imieniu
 * zablokowanie możliwości dodania listy o pustej nazwie
 * jeżeli brak stołów, to wyświetla się komunikat a nie pusta tabela
+* wyświetlanie błędów z serwera w formie pasków
 * wprowadzenie enumów do statusów i innychtego typu miejsc
 * odświeżanie inicjowane przez serwer
 * panel głosowania frontend - poprawić wygląd, sposób zaznaczenia wybranek karty, etc.
