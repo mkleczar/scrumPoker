@@ -90,6 +90,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /table/{tableId}/user/{userId}:
+    delete:
+      summary: Remove user from table
+      operationId: removeUser
+      tags:
+        - table
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: User removed from table
+        '500':
+          description: Can not remove user from table
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
   /table/{tableId}/user/{userId}/status/{status}:
     put:
       summary: Sets status on table

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { PokerService } from "../poker.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserRole} from "../model/user-role";
@@ -14,7 +14,7 @@ interface Role {
   templateUrl: './table-join.component.html',
   styleUrls: ['./table-join.component.css']
 })
-export class TableJoinComponent {
+export class TableJoinComponent implements OnInit {
   UserRoleType = UserRole;
 
   ROLES: Role[] = [

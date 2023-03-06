@@ -7,7 +7,8 @@ public enum ExceptionEnum {
     TABLE_ROLE_NOT_EXIST(102, "Table role not exists"),
     TABLE_USERS_PRESENT(103, "Users are present on table, so table can't be deleted"),
     USER_NAME_DUPLICATED(200, "User name is duplicated"),
-    USER_NAME_EMPTY(201, "User name is already taken");
+    USER_NAME_EMPTY(201, "User name is already taken"),
+    USER_NOT_IN_TABLE(202, "User is not sitting on specified table");
 
     private final int code;
     private final String message;

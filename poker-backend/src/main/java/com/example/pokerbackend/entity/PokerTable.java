@@ -15,6 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "POKER_TABLE")
@@ -39,6 +40,17 @@ public class PokerTable {
         return users.stream()
                 .map(PokerUser::getNick)
                 .anyMatch(n -> n.equals(name));
+    }
+
+    public Optional<PokerUser> findUserById(Long userId) {
+        return users.stream()
+                .filter(user -> user.getId() == userId)
+                .findAny();
+    }
+    public boolean containsUserById(Long userId) {
+        return users.stream()
+                .map(PokerUser::getId)
+                .anyMatch(n -> n.equals(userId));
     }
 
     public int countUsers() {

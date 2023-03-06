@@ -122,6 +122,15 @@ public class TableService {
         return allTables();
     }
 
+    public void deleteUserFromTable(Long tableId, Long userId) {
+        PokerTable table = findTable(tableId);
+        PokerUser user = table.findUserById(userId)
+                .orElseThrow(ExceptionEnum.USER_NOT_IN_TABLE::asException);
+        table.getUsers().removeIf(u-> u.getId() == user.getId());
+        userRepository.delete(user);
+        pokerTableRepository.save(table);
+    }
+
     private void cleanVotes(PokerTable table) {
         table.getUsers().forEach(u -> u.setVote(null));
     }
