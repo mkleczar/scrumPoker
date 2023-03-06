@@ -69,4 +69,9 @@ export class PokerService {
     const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/vote/cancel`;
     return this.http.put<void>(url, "{}", this.httpOptions);
   }
+
+  removeTable(tableId: number):Observable<Table[]> {
+    const url = `${this.pokerUrl}/table/${tableId}`;
+    return this.http.delete<Table[]>(url);
+  }
 }

@@ -40,4 +40,12 @@ export class TablesComponent implements OnInit{
         error: err => console.log("Znaleziony błąd: " + err.error)
       })
   }
+
+  removeTable(tableId: number):void {
+    this.pokerService.removeTable(tableId)
+      .subscribe({
+        next: t => this.tables = t,
+        error: e => this.messagesService.add({severity:'error', summary:'Error', detail:e.error.message})
+      })
+  }
 }
