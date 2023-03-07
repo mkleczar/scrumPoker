@@ -5,7 +5,6 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
-* dodanie środowiska, które będzie przechowywać np: url backendu
 * przerobienie komponentów użytych w table na dummy components (z @Input i @Output)
 * query params w formie observera
 * table jako osobny moduł?
@@ -28,6 +27,7 @@ Tematy do zrobienia:
 
 
 ### Done
+* dodanie środowiska, które będzie przechowywać np: url backendu
 * przycisk na liście Players na stole do opuszczania stołu
 * usuwanie stołów z listy - tylko gdy są puste (obsługa błędu na messageService)
 * zablokowanie możliwości dodania do stołu osoby o takim samym imieniu i o pustym imieniu

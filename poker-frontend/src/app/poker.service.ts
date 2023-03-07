@@ -5,13 +5,14 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "./model/user";
 import {TableDetails} from "./model/table-details";
 import {SseService} from "./sse.service";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokerService {
 
-  private pokerUrl = 'http://localhost:8080';
+  private pokerUrl = environment.backendUrl;
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
