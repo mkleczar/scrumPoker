@@ -3,6 +3,14 @@
     <p-table [value]="table.users" [tableStyle]="{'min-width': '25rem'}">
       <ng-template pTemplate="header">
         <tr>
+          <th colspan="2" style="text-align: center">
+            <ng-container *ngIf="notAllVotes(table); else allVotes">
+              <p-tag severity="danger" value="Waiting for all votes"></p-tag>
+            </ng-container>
+            <ng-template #allVotes><p-tag severity="success" value="Got all votes!"></p-tag></ng-template>
+          </th>
+        </tr>
+        <tr>
           <th>Player</th>
           <th>Status</th>
         </tr>

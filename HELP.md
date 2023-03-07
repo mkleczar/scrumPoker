@@ -9,7 +9,6 @@ Tematy do zrobienia:
 * query params w formie observera
 * table jako osobny moduł?
 * propagacja aktualizacji informacji o stole w formie obserwera
-* znacznik w czasie głosowania, że wszyscy uprawnieni już zagłosowali
 * lepsze ustawienie komponentów na ekranie
 * przeniesienie styli do plików CSS (stworzenie i użycie wspólnych klas)
 * wykres dystrybucji głosów powinien się sam odświeżać
@@ -22,11 +21,13 @@ Tematy do zrobienia:
 
 ### TODO second version
 * na liście stołów dodać licznik obecnych osób
+* progress bar z ilością oddanych głosów vs ilość głosujących
 
 ### Working
 
 
 ### Done
+* znacznik w czasie głosowania, że wszyscy uprawnieni już zagłosowali
 * dodanie środowiska, które będzie przechowywać np: url backendu
 * przycisk na liście Players na stole do opuszczania stołu
 * usuwanie stołów z listy - tylko gdy są puste (obsługa błędu na messageService)
