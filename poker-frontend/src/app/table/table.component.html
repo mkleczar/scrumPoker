@@ -8,6 +8,17 @@
     </div>
   </div>
 
+  <div class="flex flex-row card-container" [style]="{'margin':'1em'}"
+       *ngIf="table && (table.status == TableStatusType.VOTING) && user && user.role == 'PLAYER'">
+
+    <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
+      <div>
+        <app-table-voting-panel [table]="table"></app-table-voting-panel>
+      </div>
+    </div>
+
+  </div>
+
   <div class="flex flex-row" [style]="{'margin':'1em'}">
 
     <div class="flex-2 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4">
@@ -30,15 +41,4 @@
     </div>
 
   </div>
-</div>
-<div class="flex flex-row card-container" [style]="{'margin':'1em'}">
-
-  <div class="flex-1 bg-blue-100 text-white font-bold text-center p-4 border-round mx-4"
-       *ngIf="table && (table.status == TableStatusType.VOTING) && user && user.role == 'PLAYER'">
-    <div >
-    <app-table-voting-panel [table]="table"></app-table-voting-panel>
-  </div>
-</div>
-
-<div class="flex flex-row card-container" [style]="{'margin':'1em'}">
 </div>
