@@ -44,8 +44,20 @@ export class TablesComponent implements OnInit{
   removeTable(tableId: number):void {
     this.pokerService.removeTable(tableId)
       .subscribe({
-        next: t => this.tables = t,
+        next: t => {
+          this.messagesService.add({severity:'success', summary:'Success', detail:"Table removed properly"});
+          this.tables = t;
+        },
         error: e => this.messagesService.add({severity:'error', summary:'Error', detail:e.error.message})
+      })
+  }
+
+  onTableAdd(tableName: string):void {
+    this.pokerService.addTable(tableName)
+      .subscribe({
+        next: t => {},
+        error: e => this.messagesService.add({severity:'error', summary:'Error', detail:e.error.message}),
+        complete: () => {}
       })
   }
 }

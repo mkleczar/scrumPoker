@@ -1,9 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TableDetails} from "../model/table-details";
 import {User} from "../model/user";
-import {PokerService} from "../poker.service";
-import {Router} from "@angular/router";
-import {MessageService} from "primeng/api";
+import {UserTable} from "../interface/user-table";
 
 @Component({
   selector: 'app-table-team',
@@ -37,16 +35,9 @@ export class TableTeamComponent {
 
   @Input() table!: TableDetails;
   @Input() user?: User;
+  @Output() userRemoveEmiter: EventEmitter<UserTable> = new EventEmitter<UserTable>();
 
-  constructor(private pokerService: PokerService,
-              private router: Router,
-              private messageService: MessageService) {
-  }
   removeUser(userId: number) {
-    this.pokerService.removeUser(this.table.id, userId)
-      .subscribe({
-        next: () => this.router.navigateByUrl(`/tables`),
-        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message}),
-      });
+    this.userRemoveEmiter.emit({tableId: this.table.id, userId: userId})
   }
 }

@@ -1,10 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PokerService} from "../poker.service";
 import {Location} from "@angular/common";
 import {TableDetails} from "../model/table-details";
 import {User} from "../model/user";
 import {TableStatus} from "../model/table-status";
+import {MessageService} from "primeng/api";
+import {UserTable} from "../interface/user-table";
 
 @Component({
   selector: 'app-table',
@@ -21,6 +23,8 @@ export class TableComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private messageService: MessageService,
     private pokerService: PokerService,
     private location: Location) {
   }
@@ -53,5 +57,16 @@ export class TableComponent implements OnInit {
   getUser(userId: number): void {
     this.pokerService.getUser(userId)
       .subscribe(u => this.user = u);
+  }
+
+  onUserRemove(data: UserTable) {
+    this.pokerService.removeUser(data.tableId, data.userId)
+      .subscribe({
+        next: () => {
+          this.messageService.add({severity:'success', summary:'Success', detail:"User removed from table"});
+          return this.router.navigateByUrl(`/tables`)
+        },
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message}),
+      });
   }
 }
