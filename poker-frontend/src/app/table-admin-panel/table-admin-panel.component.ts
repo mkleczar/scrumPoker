@@ -1,5 +1,4 @@
-import {Component, Input} from '@angular/core';
-import {PokerService} from "../poker.service";
+import {Component, EventEmitter, Output} from '@angular/core';
 import {TableStatus} from "../model/table-status";
 
 @Component({
@@ -23,22 +22,17 @@ import {TableStatus} from "../model/table-status";
 export class TableAdminPanelComponent {
 
   TableStatusType = TableStatus;
+  tableStatus = TableStatus.READY;
+  @Output() adminCommandEmiter: EventEmitter<TableStatus> = new EventEmitter<TableStatus>();
 
-  @Input() userId? : number;
-  @Input() tableId? : number;
-  @Input() tableStatus? : TableStatus
-
-  constructor(private pokerService:PokerService) {
-  }
 
   setStatusVoting(): void {
-    console.log("Voting")
-    this.pokerService.setStatus(this.tableId, this.userId, "VOTING")
-      .subscribe()
+    this.tableStatus = TableStatus.VOTING;
+    this.adminCommandEmiter.emit(TableStatus.VOTING)
   }
 
   setStatusReveal(): void {
-    this.pokerService.setStatus(this.tableId, this.userId, "REVIVING")
-      .subscribe()
+    this.tableStatus = TableStatus.REVIVING;
+    this.adminCommandEmiter.emit(TableStatus.REVIVING);
   }
 }

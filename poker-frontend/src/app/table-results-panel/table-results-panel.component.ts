@@ -1,7 +1,4 @@
 import {Component, Input, OnInit, Optional} from '@angular/core';
-import {Table} from "../model/table";
-import {TableDetails} from "../model/table-details";
-import {max} from "rxjs";
 import {User} from "../model/user";
 
 @Component({

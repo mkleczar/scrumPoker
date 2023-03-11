@@ -7,6 +7,7 @@ import {TableDetails} from "./model/table-details";
 import {SseService} from "./sse.service";
 import {environment} from "../environments/environment";
 import {Card} from "./interface/card";
+import {TableStatus} from "./model/table-status";
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,7 @@ export class PokerService {
     return this.sse.getServerSentEvent(url);
   }
 
-  setStatus(tableId?: number, userId?: number, status?: string):Observable<void> {
+  setStatus(tableId?: number, userId?: number, status?: TableStatus):Observable<void> {
     const url = `${this.pokerUrl}/table/${tableId}/user/${userId}/status/${status}`;
     return this.http.put<void>(url, "{}", this.httpOptions);
   }

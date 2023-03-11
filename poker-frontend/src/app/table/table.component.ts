@@ -83,6 +83,11 @@ export class TableComponent implements OnInit {
       });
   }
 
+  onStatusChange(status: TableStatus):void {
+    this.pokerService.setStatus(this.table?.id, this.userId, status)
+      .subscribe()
+  }
+
   onVote(vote: number):void {
     this.pokerService.sendVote(this.table?.id, this.userId, vote)
       .subscribe({
