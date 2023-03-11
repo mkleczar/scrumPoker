@@ -84,10 +84,18 @@ export class TableComponent implements OnInit {
   }
 
   onVote(vote: number):void {
-    // TODO: impl
+    this.pokerService.sendVote(this.table?.id, this.userId, vote)
+      .subscribe({
+        next: value =>this.messageService.add({severity:'success', summary:'Success', detail:"Your vote is important!"}),
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message})
+      });
   }
 
   onVoteCancel(): void {
-    // TODO: impl
+    this.pokerService.cancelVote(this.table?.id, this.userId)
+      .subscribe({
+        next: value =>this.messageService.add({severity:'success', summary:'Success', detail:"Your vote is canceled, try new vote"}),
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message})
+      });
   }
 }

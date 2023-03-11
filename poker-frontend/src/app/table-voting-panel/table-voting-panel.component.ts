@@ -1,54 +1,38 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TableDetails} from "../model/table-details";
-import {PokerService} from "../poker.service";
-import {ActivatedRoute} from "@angular/router";
-import {MessageService} from "primeng/api";
-
-
-interface Card {
-  name: string,
-  code: number
-}
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Card} from "../interface/card";
 
 @Component({
   selector: 'app-table-voting-panel',
-  templateUrl: './table-voting-panel.component.html',
+  template: `
+    <p-card header="Voting panel" [style]="{'margin':'1em'}">
+
+      <p-selectButton [options]="cards" [(ngModel)]="selectedCard"
+                      optionLabel="name" optionValue="code" (onChange)="vote(selectedCard)"></p-selectButton>
+
+      <ng-template pTemplate="footer">
+        <button type="button" class="text-white bg-primary-500 border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
+                (click)="cancel()">Cancel vote!</button>
+      </ng-template>
+
+    </p-card>
+  `,
   styleUrls: ['./table-voting-panel.component.css']
 })
-export class TableVotingPanelComponent implements OnInit {
-  @Input() table?: TableDetails;
+export class TableVotingPanelComponent {
   @Input() cards: Card[] = [];
+  @Output() voteEmiter: EventEmitter<number> = new EventEmitter<number>();
+  @Output() cancelVoteEmiter: EventEmitter<void> = new EventEmitter<void>();
 
   selectedCard?: number;
-  userId?: number;
-
-  constructor(private pokerService: PokerService,
-              private messagesService: MessageService,
-              private route: ActivatedRoute) {
-  }
-
-  ngOnInit() {
-    this.userId = Number(this.route.snapshot.paramMap.get("userId"));
-    // this.cards = this.pokerService.getCards(this.table?.id ?? 0);
-  }
 
   vote(card?: number):void {
     console.log("vote: " + card)
-    this.userId = Number(this.route.snapshot.paramMap.get("userId"));
     this.selectedCard = card;
-    this.pokerService.sendVote(this.table?.id, this.userId, card)
-      .subscribe({
-        next: value =>this.messagesService.add({severity:'success', summary:'Success', detail:"Your vote is important!"}),
-        error: e => this.messagesService.add({severity:'error', summary:'Error', detail:e.error.message})
-      });
+    this.voteEmiter.emit(card);
   }
   cancel():void {
     console.log("vote canceled");
     this.selectedCard = 0;
-    this.pokerService.cancelVote(this.table?.id, this.userId)
-      .subscribe({
-        next: value =>this.messagesService.add({severity:'success', summary:'Success', detail:"Your vote is canceled, try new vote"}),
-        error: e => this.messagesService.add({severity:'error', summary:'Error', detail:e.error.message})
-      });
+    this.cancelVoteEmiter.emit();
   }
 }
