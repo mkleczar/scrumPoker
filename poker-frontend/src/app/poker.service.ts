@@ -6,6 +6,7 @@ import { User } from "./model/user";
 import {TableDetails} from "./model/table-details";
 import {SseService} from "./sse.service";
 import {environment} from "../environments/environment";
+import {Card} from "./interface/card";
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +80,17 @@ export class PokerService {
   removeUser(tableId: number, userId: number):Observable<void> {
     const url = `${this.pokerUrl}/table/${tableId}/user/${userId}`;
     return this.http.delete<void>(url);
+  }
+
+  getCards(tableId: number):Card[] {
+    return [
+      {name: '1', code: 1},
+      {name: '2', code: 2},
+      {name: '3', code: 3},
+      {name: '5', code: 5},
+      {name: '8', code: 8},
+      {name: '13', code: 13},
+      {name: '21', code: 21},
+      {name: '34', code: 34}];
   }
 }
