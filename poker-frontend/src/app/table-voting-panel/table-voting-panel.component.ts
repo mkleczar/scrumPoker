@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TableDetails} from "../model/table-details";
 import {PokerService} from "../poker.service";
 import {ActivatedRoute} from "@angular/router";
@@ -15,9 +15,9 @@ interface Card {
   templateUrl: './table-voting-panel.component.html',
   styleUrls: ['./table-voting-panel.component.css']
 })
-export class TableVotingPanelComponent {
+export class TableVotingPanelComponent implements OnInit {
   @Input() table?: TableDetails;
-  cards: Card[] = []
+  @Input() cards: Card[] = [];
 
   selectedCard?: number;
   userId?: number;
@@ -29,7 +29,7 @@ export class TableVotingPanelComponent {
 
   ngOnInit() {
     this.userId = Number(this.route.snapshot.paramMap.get("userId"));
-    this.cards = this.pokerService.getCards(this.table?.id ?? 0);
+    // this.cards = this.pokerService.getCards(this.table?.id ?? 0);
   }
 
   vote(card?: number):void {

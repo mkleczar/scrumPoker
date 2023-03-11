@@ -82,15 +82,21 @@ export class PokerService {
     return this.http.delete<void>(url);
   }
 
-  getCards(tableId: number):Card[] {
-    return [
-      {name: '1', code: 1},
-      {name: '2', code: 2},
-      {name: '3', code: 3},
-      {name: '5', code: 5},
-      {name: '8', code: 8},
-      {name: '13', code: 13},
-      {name: '21', code: 21},
-      {name: '34', code: 34}];
+  getCards(tableId: number):Observable<Card[]> {
+    return new Observable<Card[]>(observer => {
+      observer.next([
+        {name: '1', code: 1},
+        {name: '2', code: 2},
+        {name: '3', code: 3},
+        {name: '5', code: 5},
+        {name: '8', code: 8},
+        {name: '13', code: 13},
+        {name: '21', code: 21},
+        {name: '34', code: 34},
+        {name: '55', code: 55}
+      ]);
+      observer.complete();
+      return {unsubscribe() {}};
+    });
   }
 }

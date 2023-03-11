@@ -7,6 +7,7 @@ import {User} from "../model/user";
 import {TableStatus} from "../model/table-status";
 import {MessageService} from "primeng/api";
 import {UserTable} from "../interface/user-table";
+import {Card} from "../interface/card";
 
 @Component({
   selector: 'app-table',
@@ -20,6 +21,7 @@ export class TableComponent implements OnInit {
   table?: TableDetails;
   userId : number = -1;
   user?: User;
+  cards: Card[] =[];
 
   constructor(
     private route: ActivatedRoute,
@@ -39,7 +41,10 @@ export class TableComponent implements OnInit {
   getTable(): void {
     const tableId = Number(this.route.snapshot.paramMap.get("tableId"));
     this.pokerService.getTable(tableId, this.userId)
-      .subscribe(t => this.table = t);
+      .subscribe(t => {
+        this.table = t;
+        this.getCards(t.id);
+      });
   }
 
   getTableReact(): void {
@@ -59,6 +64,14 @@ export class TableComponent implements OnInit {
       .subscribe(u => this.user = u);
   }
 
+  getCards(tableId: number) {
+    this.pokerService.getCards(tableId).subscribe({
+      next: stack => this.cards = stack,
+      error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message}),
+      }
+    );
+  }
+
   onUserRemove(data: UserTable) {
     this.pokerService.removeUser(data.tableId, data.userId)
       .subscribe({
@@ -68,5 +81,13 @@ export class TableComponent implements OnInit {
         },
         error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message}),
       });
+  }
+
+  onVote(vote: number):void {
+    // TODO: impl
+  }
+
+  onVoteCancel(): void {
+    // TODO: impl
   }
 }
