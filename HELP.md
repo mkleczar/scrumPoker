@@ -5,16 +5,14 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
-* query params w formie observera
+* dynamiczna, wczytywana z bazy skala, możliwa do zmiany przez administratora na stole
 * table jako osobny moduł?
 * propagacja aktualizacji informacji o stole w formie obserwera
 * przeniesienie styli do plików CSS (stworzenie i użycie wspólnych klas)
 * wykres dystrybucji głosów powinien się sam odświeżać
-* przycisk na panelu uczestników przy aktualnej osobie, do opuszczenia stołu
 * sygnalizacja, że brak admina
 * w czasie głosowania, anulowanie głosu nie przez ustawienie zera, ale jakoś inaczej
 * lepszy panel głosowania, oddający różnicę pomiędzy poszczególnymi opcjami
-* dynamiczna, wczytywana z bazy skala, możliwa do zmiany przez administratora na stole
 * inny kolor tła, dla różnego typu aktorów np: PLAYER - zielony, ADMIN - żółty, SPECTATOR - niebieski
 
 ### TODO second version
@@ -25,6 +23,8 @@ Tematy do zrobienia:
 
 
 ### Done
+* przycisk na panelu uczestników przy aktualnej osobie, do opuszczenia stołu
+* query params w formie observera
 * lepsze ustawienie komponentów na ekranie
 * przerobienie komponentów użytych w table na dummy components (z @Input i @Output)
 * znacznik w czasie głosowania, że wszyscy uprawnieni już zagłosowali
