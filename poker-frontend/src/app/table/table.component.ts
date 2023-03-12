@@ -32,44 +32,45 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = Number(this.route.snapshot.paramMap.get("userId"));
-    this.getUser(this.userId);
-    this.getTable();
-    this.getTableReact();
+    this.route.params.subscribe(params => {
+      this.userId = params["userId"];
+      const tableId:number = params["tableId"];
+      this.getUser(this.userId);
+      this.getTable(tableId);
+      this.getTableReact(tableId);
+      this.getCards(tableId);
+    })
   }
 
-  getTable(): void {
-    const tableId = Number(this.route.snapshot.paramMap.get("tableId"));
+  getTable(tableId: number): void {
     this.pokerService.getTable(tableId, this.userId)
-      .subscribe(t => {
-        this.table = t;
-        this.getCards(t.id);
+      .subscribe({
+        next: t => this.table = t,
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message})
       });
   }
 
-  getTableReact(): void {
-    const tableId = Number(this.route.snapshot.paramMap.get("tableId"));
+  getTableReact(tableId: number): void {
     this.pokerService.getTableReact(tableId)
       .subscribe({
-        next: t => {
-          console.log(t);
-          this.table = t;
-        },
-        error: err => console.log("Znaleziony błąd: " + err.error)
+        next: t => this.table = t,
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message})
       });
   }
 
   getUser(userId: number): void {
     this.pokerService.getUser(userId)
-      .subscribe(u => this.user = u);
+      .subscribe({
+        next: u => this.user = u,
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message}),
+      });
   }
 
   getCards(tableId: number) {
     this.pokerService.getCards(tableId).subscribe({
       next: stack => this.cards = stack,
       error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message}),
-      }
-    );
+    });
   }
 
   onUserRemove(data: UserTable) {
@@ -85,7 +86,10 @@ export class TableComponent implements OnInit {
 
   onStatusChange(status: TableStatus):void {
     this.pokerService.setStatus(this.table?.id, this.userId, status)
-      .subscribe()
+      .subscribe({
+        next: value =>this.messageService.add({severity:'success', summary:'Success', detail:"State changed to " + status}),
+        error: e => this.messageService.add({severity:'error', summary:'Error', detail:e.error.message})
+      })
   }
 
   onVote(vote: number):void {

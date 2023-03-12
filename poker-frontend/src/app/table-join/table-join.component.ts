@@ -35,8 +35,11 @@ export class TableJoinComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.tableId = Number(this.route.snapshot.paramMap.get("id"));
-    this.tableName = this.route.snapshot.paramMap.get("name");
+    this.route.params.subscribe(params => {
+        console.log("Params:", params);
+        this.tableId = params["id"];
+        this.tableName = params["name"];
+    })
   }
 
   joinTable(userName: string, userRole: UserRole) {

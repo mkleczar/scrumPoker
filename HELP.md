@@ -5,11 +5,9 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
-* przerobienie komponentów użytych w table na dummy components (z @Input i @Output)
 * query params w formie observera
 * table jako osobny moduł?
 * propagacja aktualizacji informacji o stole w formie obserwera
-* lepsze ustawienie komponentów na ekranie
 * przeniesienie styli do plików CSS (stworzenie i użycie wspólnych klas)
 * wykres dystrybucji głosów powinien się sam odświeżać
 * przycisk na panelu uczestników przy aktualnej osobie, do opuszczenia stołu
@@ -27,6 +25,8 @@ Tematy do zrobienia:
 
 
 ### Done
+* lepsze ustawienie komponentów na ekranie
+* przerobienie komponentów użytych w table na dummy components (z @Input i @Output)
 * znacznik w czasie głosowania, że wszyscy uprawnieni już zagłosowali
 * dodanie środowiska, które będzie przechowywać np: url backendu
 * przycisk na liście Players na stole do opuszczania stołu
