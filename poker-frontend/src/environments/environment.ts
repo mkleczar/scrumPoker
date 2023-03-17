@@ -1,3 +1,3 @@
 export const environment = {
-  backendUrl: 'http://www.google.pl'
+  backendUrl: 'https://scrum-poker-backend-mario-241074.azurewebsites.net'
 };

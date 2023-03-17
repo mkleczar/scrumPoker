@@ -5,6 +5,8 @@ Aplikacja do rozgrywania scrumowego pokera
 
 ### TODO
 Tematy do zrobienia:
+* usunięcie kolumny ID z listy stołów
+* usuniecie stołu powinno wysyłać do wszystkich zalogowanych event flex
 * dynamiczna, wczytywana z bazy skala, możliwa do zmiany przez administratora na stole
 * table jako osobny moduł?
 * propagacja aktualizacji informacji o stole w formie obserwera
